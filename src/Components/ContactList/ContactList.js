@@ -1,27 +1,30 @@
 import s from "./ContactList.module.css";
 import PropTypes from "prop-types";
 
-function ContactList({ getContacts, deleteContact }) {
+const ContactList = ({ getContacts, deleteContact }) => {
   return (
     <div className={s.listWrapper}>
       <ul className={s.list}>
-        {getContacts.map(({ name, number, id }) => (
-          <li className={s.item} key={id}>
-            <p className={s.text}>{name}:</p>
-            <p className={s.text}>{number}</p>
-            <button
-              className={s.button}
-              type="button"
-              onClick={() => deleteContact(id)}
-            >
-              Delete
-            </button>
-          </li>
-        ))}
+        {getContacts.map(({ name, number, id }) => {
+          const onDeleteContact = () => deleteContact(id);
+          return (
+            <li className={s.item} key={id}>
+              <p className={s.text}>{name}:</p>
+              <p className={s.text}>{number}</p>
+              <button
+                className={s.button}
+                type="button"
+                onClick={onDeleteContact}
+              >
+                Delete
+              </button>
+            </li>
+          );
+        })}
       </ul>
     </div>
   );
-}
+};
 
 ContactList.propTypes = {
   getContacts: PropTypes.arrayOf(

@@ -1,10 +1,9 @@
 import s from "./ContactForm.module.css";
 import PropTypes from "prop-types";
 import { v4 as uuidv4 } from "uuid";
-import { Component } from "react";
 import { useState } from "react";
 
-function ContactForm(formSubmit) {
+function ContactForm({ formSubmit }) {
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
 
@@ -25,8 +24,6 @@ function ContactForm(formSubmit) {
     }
   };
 
-  // =========xz, xz======//
-
   const handleSubmit = (evt) => {
     evt.preventDefault();
     const contact = { id: uuidv4(), name, number };
@@ -35,7 +32,6 @@ function ContactForm(formSubmit) {
   };
 
   const resetForm = () => {
-    // this.setState({ name: "", number: "" });
     setName("");
     setNumber("");
   };
